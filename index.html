@@ -3,49 +3,765 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Portfolio" />
+
+    <meta
+      name="description"
+      content="Chethana Kuppala's business analyst and data analytics portfolio."
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
     <script
       src="https://kit.fontawesome.com/fa62c117c7.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="styles.css" />
-    <title>Raj Shekhar</title>
+
+    <title>Chethana Kuppala | Business Analyst</title>
+
+    <style>
+      :root {
+        --background: #ffffff;
+        --background-secondary: #f5f6fb;
+        --foreground: #24283b;
+        --muted: #656a7b;
+        --accent: #6c63ff;
+        --accent-secondary: #a855f7;
+        --border: #e3e5ee;
+        --card-background: rgba(255, 255, 255, 0.86);
+        --header-background: rgba(255, 255, 255, 0.84);
+        --shadow: 0 12px 35px rgba(31, 38, 70, 0.1);
+        --shadow-hover: 0 18px 45px rgba(108, 99, 255, 0.2);
+      }
+
+      body.dark {
+        --background: #11131f;
+        --background-secondary: #191c2b;
+        --foreground: #f4f4f8;
+        --muted: #b6bac8;
+        --accent: #9f98ff;
+        --accent-secondary: #c084fc;
+        --border: #303449;
+        --card-background: rgba(29, 32, 48, 0.88);
+        --header-background: rgba(17, 19, 31, 0.86);
+        --shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+        --shadow-hover: 0 18px 45px rgba(159, 152, 255, 0.2);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        color: var(--foreground);
+        background:
+          radial-gradient(
+            circle at 10% 10%,
+            rgba(108, 99, 255, 0.12),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 90% 30%,
+            rgba(168, 85, 247, 0.1),
+            transparent 25%
+          ),
+          var(--background);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        transition:
+          color 0.35s ease,
+          background-color 0.35s ease;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        color: inherit;
+        font: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1.1rem max(5%, calc((100% - 1150px) / 2));
+        background: var(--header-background);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+
+      .logo {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .nav {
+        gap: 1.5rem;
+      }
+
+      .nav__list {
+        gap: 1.5rem;
+      }
+
+      .nav__link {
+        position: relative;
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+
+      .nav__link::after {
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        content: "";
+        background: var(--accent);
+        transition: width 0.25s ease;
+      }
+
+      .nav__link:hover::after {
+        width: 100%;
+      }
+
+      .icon-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        cursor: pointer;
+        background: var(--background-secondary);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        transition:
+          color 0.25s ease,
+          background-color 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .icon-button:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      .theme-toggle {
+        position: relative;
+        width: 72px;
+        height: 38px;
+        padding: 0;
+        overflow: hidden;
+        border-radius: 999px;
+      }
+
+      .theme-toggle__track {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #ffd166, #ff9f1c);
+        transition: background 0.35s ease;
+      }
+
+      body.dark .theme-toggle__track {
+        background: linear-gradient(135deg, #283048, #1f2235);
+      }
+
+      .theme-toggle__thumb {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        color: #f59e0b;
+        background: #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transition:
+          left 0.35s ease,
+          transform 0.35s ease,
+          color 0.35s ease;
+      }
+
+      body.dark .theme-toggle__thumb {
+        left: 38px;
+        color: #6366f1;
+        transform: rotate(360deg);
+      }
+
+      .theme-toggle__sun,
+      .theme-toggle__moon {
+        position: absolute;
+        font-size: 0.9rem;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .theme-toggle__sun {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .theme-toggle__moon {
+        opacity: 0;
+        transform: scale(0.6);
+      }
+
+      body.dark .theme-toggle__sun {
+        opacity: 0;
+        transform: scale(0.6);
+      }
+
+      body.dark .theme-toggle__moon {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .nav__hamburger {
+        display: none;
+      }
+
+      main {
+        width: min(1150px, 90%);
+        margin: 0 auto;
+      }
+
+      .about {
+        display: flex;
+        min-height: 88vh;
+        flex-direction: column;
+        padding: 5rem 0 4rem;
+        text-align: center;
+        animation: fade-up 0.85s ease both;
+      }
+
+      .about__image-wrapper {
+        position: relative;
+        width: 190px;
+        height: 190px;
+        margin-bottom: 2rem;
+      }
+
+      .about__image-wrapper::before {
+        position: absolute;
+        inset: -7px;
+        z-index: -1;
+        content: "";
+        background: linear-gradient(
+          135deg,
+          var(--accent),
+          var(--accent-secondary)
+        );
+        border-radius: 50%;
+        animation: profile-glow 3s ease-in-out infinite;
+      }
+
+      .about__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        background: var(--background-secondary);
+        border: 5px solid var(--background);
+        border-radius: 50%;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+
+      .about__image:hover {
+        transform: scale(1.04) rotate(1deg);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .about h1 {
+        margin-bottom: 0.4rem;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        line-height: 1.2;
+      }
+
+      .about__name {
+        color: transparent;
+        background: linear-gradient(
+          135deg,
+          var(--accent),
+          var(--accent-secondary)
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+      }
+
+      .about__role {
+        margin-bottom: 1.2rem;
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        font-weight: 600;
+      }
+
+      .about__description {
+        max-width: 780px;
+        margin-bottom: 0.8rem;
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      .about__contact {
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .button {
+        display: inline-flex;
+        gap: 0.55rem;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1.25rem;
+        font-weight: 500;
+        cursor: pointer;
+        border: 2px solid var(--accent);
+        border-radius: 8px;
+        transition:
+          color 0.25s ease,
+          background-color 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .button:hover {
+        color: var(--background);
+        background: var(--accent);
+        transform: translateY(-3px);
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.55rem;
+        transition:
+          color 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .social-link:hover {
+        color: var(--accent);
+        transform: translateY(-4px) scale(1.08);
+      }
+
+      .about__highlights {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(150px, 1fr));
+        gap: 1.2rem;
+        width: 100%;
+        max-width: 750px;
+        margin-top: 3rem;
+      }
+
+      .highlight {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        align-items: center;
+        padding: 1.4rem 1rem;
+        background: var(--card-background);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .highlight:hover {
+        border-color: var(--accent);
+        transform: translateY(-6px);
+      }
+
+      .highlight__number {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .highlight__label {
+        color: var(--muted);
+        font-size: 0.9rem;
+        text-align: center;
+      }
+
+      .section {
+        padding: 5rem 0;
+      }
+
+      .section__title {
+        margin-bottom: 2.5rem;
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        text-align: center;
+      }
+
+      .section__title::after {
+        display: block;
+        width: 55px;
+        height: 4px;
+        margin: 0.8rem auto 0;
+        content: "";
+        background: linear-gradient(
+          90deg,
+          var(--accent),
+          var(--accent-secondary)
+        );
+        border-radius: 10px;
+      }
+
+      .projects__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+      }
+
+      .project {
+        position: relative;
+        overflow: hidden;
+        padding: 1.8rem;
+        background: var(--card-background);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.35s ease,
+          box-shadow 0.35s ease,
+          border-color 0.35s ease;
+      }
+
+      .project::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        content: "";
+        background: linear-gradient(
+          90deg,
+          var(--accent),
+          var(--accent-secondary)
+        );
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s ease;
+      }
+
+      .project:hover {
+        border-color: var(--accent);
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-9px);
+      }
+
+      .project:hover::before {
+        transform: scaleX(1);
+      }
+
+      .project h3 {
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+      }
+
+      .project__description {
+        margin-bottom: 1.2rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .project__stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+      }
+
+      .project__stack-item {
+        padding: 0.35rem 0.75rem;
+        color: var(--accent);
+        background: var(--background-secondary);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .skills__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
+      }
+
+      .skills__list-item {
+        padding: 0.7rem 1rem;
+        background: var(--card-background);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        font-size: 0.9rem;
+        transition:
+          color 0.25s ease,
+          background-color 0.25s ease,
+          border-color 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .skills__list-item:hover {
+        color: var(--accent);
+        background: var(--background-secondary);
+        border-color: var(--accent);
+        transform: translateY(-4px);
+      }
+
+      .contact {
+        flex-direction: column;
+        gap: 1.2rem;
+        padding-bottom: 6rem;
+        text-align: center;
+      }
+
+      .contact p {
+        max-width: 650px;
+        color: var(--muted);
+      }
+
+      .contact__details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .contact__details span {
+        display: inline-flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      .footer {
+        padding: 2rem 1rem;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+        text-align: center;
+      }
+
+      .scroll-top {
+        position: fixed;
+        right: 1.5rem;
+        bottom: 1.5rem;
+      }
+
+      .scroll-top a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        color: var(--background);
+        background: var(--accent);
+        border-radius: 50%;
+        box-shadow: var(--shadow);
+        transition: transform 0.25s ease;
+      }
+
+      .scroll-top a:hover {
+        transform: translateY(-4px);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(45px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .reveal.reveal--visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes fade-up {
+        from {
+          opacity: 0;
+          transform: translateY(35px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes profile-glow {
+        0%,
+        100% {
+          opacity: 0.75;
+          transform: scale(1);
+        }
+
+        50% {
+          opacity: 1;
+          transform: scale(1.035);
+        }
+      }
+
+      @media (max-width: 800px) {
+        .projects__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav__hamburger {
+          display: inline-flex;
+        }
+
+        .nav__list {
+          position: absolute;
+          top: 74px;
+          right: 5%;
+          display: none;
+          width: 220px;
+          flex-direction: column;
+          gap: 1rem;
+          align-items: flex-start;
+          padding: 1.3rem;
+          background: var(--card-background);
+          border: 1px solid var(--border);
+          border-radius: 12px;
+          box-shadow: var(--shadow);
+          backdrop-filter: blur(14px);
+        }
+
+        .nav__list.display-nav-list {
+          display: flex;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .header {
+          padding-right: 5%;
+          padding-left: 5%;
+        }
+
+        .about {
+          min-height: auto;
+          padding-top: 4rem;
+        }
+
+        .about__image-wrapper {
+          width: 145px;
+          height: 145px;
+        }
+
+        .about__contact {
+          flex-wrap: wrap;
+        }
+
+        .about__highlights {
+          grid-template-columns: 1fr;
+        }
+
+        .section {
+          padding: 4rem 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
   </head>
+
   <body class="light" id="top">
     <header class="header center">
-      <h3>
-        <a href="https://rjshkhr.github.io/cleanfolio-minimal" class="link"
-          >RS.</a
-        >
-      </h3>
+      <a href="#top" class="logo">CK.</a>
 
-      <nav class="nav center">
+      <nav class="nav center" aria-label="Main navigation">
         <ul class="nav__list center">
-          <li class="nav__list-item">
-            <a class="link link--nav" href="#projects">Projects</a>
+          <li>
+            <a class="nav__link" href="#projects">Projects</a>
           </li>
-          <li class="nav__list-item">
-            <a class="link link--nav" href="#skills">Skills</a>
+
+          <li>
+            <a class="nav__link" href="#skills">Skills</a>
           </li>
-          <li class="nav__list-item">
-            <a class="link link--nav" href="#contact">Contact</a>
+
+          <li>
+            <a class="nav__link" href="#education">Education</a>
+          </li>
+
+          <li>
+            <a class="nav__link" href="#contact">Contact</a>
           </li>
         </ul>
 
-        <button type="button" aria-label="toggle theme" class="btn btn--icon">
-          <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
+        <button
+          type="button"
+          aria-label="Switch to dark theme"
+          aria-pressed="false"
+          class="icon-button theme-toggle"
+          id="theme-toggle"
+          title="Switch to dark theme"
+        >
+          <span class="theme-toggle__track" aria-hidden="true"></span>
+          <span class="theme-toggle__thumb" aria-hidden="true">
+            <i class="fas fa-sun theme-toggle__sun"></i>
+            <i class="fas fa-moon theme-toggle__moon"></i>
+          </span>
         </button>
 
         <button
           type="button"
-          aria-label="toggle navigation"
-          class="btn btn--icon nav__hamburger"
+          aria-label="Toggle navigation"
+          class="icon-button nav__hamburger"
+          id="navigation-toggle"
         >
           <i aria-hidden="true" class="fas fa-bars"></i>
         </button>
@@ -54,179 +770,453 @@
 
     <main>
       <!-- About -->
-      <div class="about center">
-        <h1>Hi, I am <span class="about__name">Raj Shekhar.</span></h1>
-        <h2 class="about__role">A Front end Developer.</h2>
-        <p class="about__desc">
-          Consectetur neque sed quam molestiae consectetur nesciunt sit alias
-          Vitae libero perferendis reprehenderit optio veritatis Accusantium at
-          voluptatum cumque temporibus et Explicabo iste porro quis numquam
-          distinctio Repellendus adipisci nam perferendis amet eaque hic
-          Voluptates
+      <section class="about center">
+        <div class="about__image-wrapper">
+          <img
+            src="./profile.jpg"
+            alt="Chethana Kuppala"
+            class="about__image"
+          />
+        </div>
+
+        <h1>
+          Hi, I am
+          <span class="about__name">Chethana Kuppala.</span>
+        </h1>
+
+        <h2 class="about__role">
+          Business Analyst and Data Analytics Professional
+        </h2>
+
+        <p class="about__description">
+          I am a business analytics professional with more than two years of
+          experience transforming large, multi-source datasets into forecasting
+          models, interactive dashboards, and executive-ready reports.
+        </p>
+
+        <p class="about__description">
+          I use SQL, Python, Power BI, Tableau, Excel, and ETL automation to
+          improve reporting accuracy, identify business trends, and support
+          data-informed decisions.
         </p>
 
         <div class="about__contact center">
-          <a href="https://example.com">
-            <span class="btn btn--outline">Resume</span>
+          <a
+            href="./Chethana-Kuppala-Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+          >
+            <i aria-hidden="true" class="fas fa-file-alt"></i>
+            View Resume
           </a>
 
           <a
-            href="https://github.com/rjshkhr"
-            aria-label="github"
-            class="link link--icon"
+            href="https://github.com/chethanakuppala"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile"
+            class="social-link"
           >
             <i aria-hidden="true" class="fab fa-github"></i>
           </a>
 
           <a
-            href="https://linkedin.com/in/rjshkhr"
-            aria-label="linkedin"
-            class="link link--icon"
+            href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
+            class="social-link"
           >
             <i aria-hidden="true" class="fab fa-linkedin"></i>
           </a>
         </div>
-      </div>
 
-      <!-- Projects -->
-      <section id="projects" class="section projects">
-        <h2 class="section__title">Projects</h2>
-
-        <div class="projects__grid">
-          <div class="project">
-            <h3>Project 1</h3>
-            <p class="project__description">
-              Ipsum accusamus ea excepturi aliquid eligendi amet. Explicabo
-              sapiente debitis labore sed ipsam Mollitia repellat illum quod
-              unde beatae Quis
-            </p>
-            <ul class="project__stack">
-              <li class="project__stack-item">SASS</li>
-              <li class="project__stack-item">TypeScript</li>
-              <li class="project__stack-item">React</li>
-            </ul>
-
-            <a
-              href="https://github.com"
-              aria-label="source code"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
-            <a
-              href="https://example.com"
-              aria-label="live preview"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fas fa-external-link-alt"></i>
-            </a>
+        <div class="about__highlights">
+          <div class="highlight">
+            <span class="highlight__number">2+</span>
+            <span class="highlight__label">Years of Experience</span>
           </div>
 
-          <div class="project">
-            <h3>Project 2</h3>
-            <p class="project__description">
-              Ipsum accusamus ea excepturi aliquid eligendi amet. Explicabo
-              sapiente debitis labore sed ipsam Mollitia repellat illum quod
-              unde beatae Quis
-            </p>
-            <ul class="project__stack">
-              <li class="project__stack-item">SASS</li>
-              <li class="project__stack-item">TypeScript</li>
-              <li class="project__stack-item">React</li>
-            </ul>
-
-            <a
-              href="https://github.com"
-              aria-label="source code"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
-            <a
-              href="https://example.com"
-              aria-label="live preview"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fas fa-external-link-alt"></i>
-            </a>
+          <div class="highlight">
+            <span class="highlight__number">1M+</span>
+            <span class="highlight__label">Records Analyzed</span>
           </div>
 
-          <div class="project">
-            <h3>Project 3</h3>
-            <p class="project__description">
-              Ipsum accusamus ea excepturi aliquid eligendi amet. Explicabo
-              sapiente debitis labore sed ipsam Mollitia repellat illum quod
-              unde beatae Quis
-            </p>
-            <ul class="project__stack">
-              <li class="project__stack-item">SASS</li>
-              <li class="project__stack-item">TypeScript</li>
-              <li class="project__stack-item">React</li>
-            </ul>
-
-            <a
-              href="https://github.com"
-              aria-label="source code"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
-            <a
-              href="https://example.com"
-              aria-label="live preview"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fas fa-external-link-alt"></i>
-            </a>
+          <div class="highlight">
+            <span class="highlight__number">20+</span>
+            <span class="highlight__label">Hours Saved Monthly</span>
           </div>
         </div>
       </section>
 
+      <!-- Projects -->
+      <section id="projects" class="section">
+        <h2 class="section__title">Featured Analytics Work</h2>
+
+        <div class="projects__grid">
+          <article class="project reveal">
+            <h3>ClarityBridge</h3>
+
+            <p class="project__description">
+              Built a full-stack AI business analysis tool with two LLM agents:
+              one detects contradictions in messy requirements, while the other
+              transforms vague business problems into objectives, KPIs,
+              requirements, and user stories. Structured outputs are validated
+              with Pydantic, with a Streamlit interface, FastAPI backend, and a
+              pytest suite using mocked LLM responses.
+            </p>
+
+            <ul class="project__stack">
+              <li class="project__stack-item">Python</li>
+              <li class="project__stack-item">AI Agents</li>
+              <li class="project__stack-item">OpenAI API</li>
+              <li class="project__stack-item">Streamlit</li>
+              <li class="project__stack-item">FastAPI</li>
+              <li class="project__stack-item">Pydantic</li>
+              <li class="project__stack-item">Pytest</li>
+            </ul>
+
+            <div style="margin-top: 1.2rem;">
+              <a
+                href="https://github.com/chethanakuppala/clarity-bridge"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View ClarityBridge source code on GitHub"
+                class="button"
+              >
+                <i aria-hidden="true" class="fab fa-github"></i>
+                View Project
+              </a>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <h3>Fan and Ticketing Analytics</h3>
+
+            <p class="project__description">
+              Analyzed more than one million records for USC Athletics to
+              identify revenue trends, customer segments, attendance patterns,
+              and pricing opportunities. Built dashboards and forecasting
+              models to support leadership decisions.
+            </p>
+
+            <ul class="project__stack">
+              <li class="project__stack-item">SQL</li>
+              <li class="project__stack-item">Python</li>
+              <li class="project__stack-item">Power BI</li>
+              <li class="project__stack-item">Tableau</li>
+              <li class="project__stack-item">Forecasting</li>
+            </ul>
+          </article>
+
+          <article class="project reveal">
+            <h3>Executive KPI Reporting</h3>
+
+            <p class="project__description">
+              Developed Power BI dashboards and SQL pipelines that transformed
+              more than one million records into real-time KPI tracking tools.
+              Automated ETL workflows and eliminated over 20 hours of manual
+              reporting each month.
+            </p>
+
+            <ul class="project__stack">
+              <li class="project__stack-item">Power BI</li>
+              <li class="project__stack-item">SQL</li>
+              <li class="project__stack-item">ETL</li>
+              <li class="project__stack-item">Python</li>
+              <li class="project__stack-item">Data Validation</li>
+            </ul>
+          </article>
+
+          <article class="project reveal">
+            <h3>Financial Forecasting Analytics</h3>
+
+            <p class="project__description">
+              Applied Python-based statistical modeling and SQL analysis to
+              financial datasets. Improved forecasting accuracy by 15% and
+              produced executive-ready Power BI and Tableau dashboards for
+              strategic planning.
+            </p>
+
+            <ul class="project__stack">
+              <li class="project__stack-item">Python</li>
+              <li class="project__stack-item">SQL</li>
+              <li class="project__stack-item">Power BI</li>
+              <li class="project__stack-item">Tableau</li>
+              <li class="project__stack-item">Regression</li>
+            </ul>
+          </article>
+
+
+          <article class="project reveal">
+            <h3>Mobile Farmers Market — SNAP Access & Reporting Platform</h3>
+
+            <p class="project__description">
+              Built a data-driven web application that helped underserved
+              communities discover, enroll in, and redeem SNAP/EBT benefits at a
+              mobile farmers market, while giving program administrators a single
+              source of truth for operational and financial reporting.
+            </p>
+
+            <p class="project__description">
+              Consolidated 50–70 fragmented data sources into a reconciled SQL
+              reporting layer, redesigned 3–5 recurring workflows to reduce
+              reporting turnaround time by approximately 25%, and aligned 9+
+              operational KPIs with program funding objectives.
+            </p>
+
+            <ul class="project__stack">
+              <li class="project__stack-item">HTML</li>
+              <li class="project__stack-item">SQL</li>
+              <li class="project__stack-item">Xpoda</li>
+              <li class="project__stack-item">Data Validation</li>
+              <li class="project__stack-item">KPI Reporting</li>
+              <li class="project__stack-item">SNAP/EBT Analytics</li>
+            </ul>
+          </article>
+
+          <article class="project reveal">
+            <h3>Business Reporting Automation</h3>
+
+            <p class="project__description">
+              Designed SQL Server data models that unified multiple data
+              sources into one reporting system. Automated ETL and reporting
+              processes, increased KPI accuracy, and reduced report delivery
+              time from days to hours.
+            </p>
+
+            <ul class="project__stack">
+              <li class="project__stack-item">SQL Server</li>
+              <li class="project__stack-item">SSMS</li>
+              <li class="project__stack-item">ETL</li>
+              <li class="project__stack-item">Tableau</li>
+              <li class="project__stack-item">UAT</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
       <!-- Skills -->
-      <section class="section skills" id="skills">
+      <section class="section reveal" id="skills">
         <h2 class="section__title">Skills</h2>
+
         <ul class="skills__list">
-          <li class="skills__list-item btn btn--plain">HTML</li>
-          <li class="skills__list-item btn btn--plain">CSS</li>
-          <li class="skills__list-item btn btn--plain">SCSS</li>
-          <li class="skills__list-item btn btn--plain">JavaScript</li>
-          <li class="skills__list-item btn btn--plain">TypeScript</li>
-          <li class="skills__list-item btn btn--plain">React</li>
-          <li class="skills__list-item btn btn--plain">Redux</li>
-          <li class="skills__list-item btn btn--plain">Git</li>
-          <li class="skills__list-item btn btn--plain">Material UI</li>
-          <li class="skills__list-item btn btn--plain">Jest</li>
-          <li class="skills__list-item btn btn--plain">Enzyme</li>
-          <li class="skills__list-item btn btn--plain">CI/CD</li>
+          <li class="skills__list-item">AI Agents</li>
+          <li class="skills__list-item">OpenAI API</li>
+          <li class="skills__list-item">FastAPI</li>
+          <li class="skills__list-item">Streamlit</li>
+          <li class="skills__list-item">Pydantic</li>
+          <li class="skills__list-item">SQL</li>
+          <li class="skills__list-item">Python</li>
+          <li class="skills__list-item">Power BI</li>
+          <li class="skills__list-item">Tableau</li>
+          <li class="skills__list-item">Excel</li>
+          <li class="skills__list-item">Power Query</li>
+          <li class="skills__list-item">SSRS</li>
+          <li class="skills__list-item">Looker Studio</li>
+          <li class="skills__list-item">SQL Server</li>
+          <li class="skills__list-item">ETL Design</li>
+          <li class="skills__list-item">Data Validation</li>
+          <li class="skills__list-item">Forecasting</li>
+          <li class="skills__list-item">Regression Analysis</li>
+          <li class="skills__list-item">Statistical Modeling</li>
+          <li class="skills__list-item">KPI Dashboards</li>
+          <li class="skills__list-item">Requirements Gathering</li>
+          <li class="skills__list-item">UAT</li>
+          <li class="skills__list-item">Agile</li>
+          <li class="skills__list-item">Jira</li>
+          <li class="skills__list-item">Confluence</li>
+          <li class="skills__list-item">Xpoda</li>
+          <li class="skills__list-item">SNAP/EBT Analytics</li>
         </ul>
       </section>
 
+      <!-- Education -->
+      <section class="section" id="education">
+        <h2 class="section__title">Education</h2>
+
+        <div class="projects__grid">
+          <article class="project reveal">
+            <h3>Master of Science in Business Analytics</h3>
+
+            <p class="project__description">
+              University of South Carolina<br />
+              August 2025 – Expected May 2026
+            </p>
+
+            <ul class="project__stack">
+              <li class="project__stack-item">Business Analytics</li>
+              <li class="project__stack-item">Global Business</li>
+              <li class="project__stack-item">Study Abroad</li>
+            </ul>
+          </article>
+
+          <article class="project reveal">
+            <h3>Master of Science in Medical Informatics</h3>
+
+            <p class="project__description">
+              August 2022 – May 2024
+            </p>
+
+            <ul class="project__stack">
+              <li class="project__stack-item">Healthcare Analytics</li>
+              <li class="project__stack-item">Medical Informatics</li>
+            </ul>
+          </article>
+
+          <article class="project reveal">
+            <h3>Bachelor of Science in Pharmacy</h3>
+
+            <p class="project__description">
+              Osmania University<br />
+              August 2018 – July 2022
+            </p>
+
+            <ul class="project__stack">
+              <li class="project__stack-item">Pharmacy</li>
+              <li class="project__stack-item">Healthcare</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
       <!-- Contact -->
-      <section class="section contact center" id="contact">
+      <section class="section contact center reveal" id="contact">
         <h2 class="section__title">Contact</h2>
-        <a href="mailto:rjshekhar.official@gmail.com">
-          <span class="btn btn--outline">Email me</span>
+
+        <p>
+          I am interested in business analytics, data analytics, reporting,
+          forecasting, and business intelligence opportunities.
+        </p>
+
+        <a href="mailto:ckuppala@email.sc.edu" class="button">
+          <i aria-hidden="true" class="fas fa-envelope"></i>
+          Email Me
         </a>
+
+        <div class="contact__details">
+          <span>
+            <i aria-hidden="true" class="fas fa-map-marker-alt"></i>
+            Columbia, South Carolina
+          </span>
+
+          <span>
+            <i aria-hidden="true" class="fas fa-phone"></i>
+            332-260-0753
+          </span>
+        </div>
       </section>
     </main>
 
     <footer class="footer">
-      <a
-        href="https://github.com/rjshkhr/cleanfolio-minimal"
-        class="link footer__link"
-      >
-        Created By Raj Shekhar
-      </a>
+      <p>© 2026 Chethana Kuppala. All rights reserved.</p>
     </footer>
 
-    <div class="scroll-container">
-      <div class="scroll-top">
-        <a aria-label="Scroll up" href="#top">
-          <i aria-hidden="true" class="fas fa-arrow-up"></i>
-        </a>
-      </div>
+    <div class="scroll-top">
+      <a aria-label="Scroll to top" href="#top">
+        <i aria-hidden="true" class="fas fa-arrow-up"></i>
+      </a>
     </div>
 
-    <script src="./script.js"></script>
+    <script>
+      const body = document.body;
+      const themeToggle = document.querySelector("#theme-toggle");
+      const navigationToggle = document.querySelector("#navigation-toggle");
+      const navigationList = document.querySelector(".nav__list");
+
+      const DARK_THEME = "dark";
+      const LIGHT_THEME = "light";
+
+      function setTheme(theme) {
+        const isDark = theme === DARK_THEME;
+
+        body.classList.toggle(DARK_THEME, isDark);
+        body.classList.toggle(LIGHT_THEME, !isDark);
+
+        if (themeToggle) {
+          const label = isDark
+            ? "Switch to light theme"
+            : "Switch to dark theme";
+
+          themeToggle.setAttribute("aria-label", label);
+          themeToggle.setAttribute("aria-pressed", String(isDark));
+          themeToggle.setAttribute("title", label);
+        }
+
+        try {
+          localStorage.setItem("portfolio-theme", theme);
+        } catch (error) {
+          console.warn("Theme preference could not be saved.", error);
+        }
+      }
+
+      function getInitialTheme() {
+        try {
+          const savedTheme = localStorage.getItem("portfolio-theme");
+
+          if (savedTheme === DARK_THEME || savedTheme === LIGHT_THEME) {
+            return savedTheme;
+          }
+        } catch (error) {
+          console.warn("Theme preference could not be read.", error);
+        }
+
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+
+        return prefersDark ? DARK_THEME : LIGHT_THEME;
+      }
+
+      setTheme(getInitialTheme());
+
+      themeToggle?.addEventListener("click", () => {
+        const nextTheme = body.classList.contains(DARK_THEME)
+          ? LIGHT_THEME
+          : DARK_THEME;
+
+        setTheme(nextTheme);
+      });
+
+      navigationToggle?.addEventListener("click", () => {
+        navigationList?.classList.toggle("display-nav-list");
+      });
+
+      document.querySelectorAll(".nav__link").forEach((link) => {
+        link.addEventListener("click", () => {
+          navigationList?.classList.remove("display-nav-list");
+        });
+      });
+
+      const revealElements = document.querySelectorAll(".reveal");
+
+      if ("IntersectionObserver" in window) {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              entry.target.classList.add("reveal--visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.12,
+            rootMargin: "0px 0px -30px 0px"
+          }
+        );
+
+        revealElements.forEach((element) => {
+          revealObserver.observe(element);
+        });
+      } else {
+        revealElements.forEach((element) => {
+          element.classList.add("reveal--visible");
+        });
+      }
+    </script>
   </body>
 </html>
